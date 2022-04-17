@@ -8,3 +8,5 @@
 1.upto(5) do |i|
     Employee.create(email: "employee#{i}@test.com", password: 'password')
 end
+
+udo.create!(title: 'from_console', content: 'from_console', giver: Employee.find_by(email: 'employee3@test.com'), receiver: Employee.find_by(email: 'employee4@test.com'))
