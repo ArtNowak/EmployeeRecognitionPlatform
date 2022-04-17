@@ -15,7 +15,10 @@ class KudosController < ApplicationController
   end
 
   # GET /kudos/1/edit
-  def edit; end
+  def edit
+    unless current_employee.id == @kudo.giver_id
+      redirect_to(kudos_path, notice: 'You can edit only your own Kudos!') and return end
+  end
 
   # POST /kudos
   def create
@@ -32,7 +35,7 @@ class KudosController < ApplicationController
   # PATCH/PUT /kudos/1
   def update
     if @kudo.update(kudo_params)
-      redirect_to @kudo, notice: 'Kudo was successfully updated.'
+      redirect_to kudos_path, notice: 'Kudo was successfully updated.'
     else
       render :edit
     end
