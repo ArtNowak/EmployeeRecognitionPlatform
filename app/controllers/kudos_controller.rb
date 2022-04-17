@@ -17,7 +17,7 @@ class KudosController < ApplicationController
   # GET /kudos/1/edit
   def edit
     unless current_employee.id == @kudo.giver_id
-      redirect_to(kudos_path, notice: "You can edit only your own Kudos!") and return end
+      redirect_to(kudos_path, notice: 'You can edit only your own Kudos!') and return end
   end
 
   # POST /kudos
