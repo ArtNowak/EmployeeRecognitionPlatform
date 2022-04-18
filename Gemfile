@@ -26,6 +26,8 @@ group :development, :test do
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.8.0'
   # Tests
+  gem 'factory_bot_rails'
+  gem 'poltergeist'
   gem 'rspec-rails', '~> 5.0.0'
 end
 
@@ -37,6 +39,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'net-smtp'
   gem 'spring'
 end
 
