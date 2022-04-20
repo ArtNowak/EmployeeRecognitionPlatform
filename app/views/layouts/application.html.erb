@@ -16,15 +16,29 @@
     <p class="alert"><%= alert %></p>
 
       <nav>
-        <h4>Navigation</h4>
-        <ul>
-          <% if !employee_signed_in? %>
-            <li><%= link_to 'Sign in', new_employee_session_path %></li>
-            <li><%= link_to 'Sign up', new_employee_registration_path %></li>
-          <% else %>
-            <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
-          <%end%>
-        </ul>
+        <% if !admin_user_signed_in? %>
+          <h4>User navigation</h4>
+          <ul>
+            <% if !employee_signed_in? %>
+              <li><%= link_to 'Sign in', new_employee_session_path %></li>
+              <li><%= link_to 'Sign up', new_employee_registration_path %></li>
+            <% elsif employee_signed_in? %>
+              <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
+            <%end%>
+          </ul>
+        <% end %>
+        
+        <% if !employee_signed_in? %>
+          <h4>Admin navigation</h4>
+          <ul>
+            <% if !admin_user_signed_in? %>
+              <li><%= link_to 'Sign in', new_admin_user_session_path %></li>
+            <% elsif admin_user_signed_in? %>
+              <li><%= link_to 'Sign out', destroy_admin_user_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
       </nav>
     <%= yield %>
   </body>
