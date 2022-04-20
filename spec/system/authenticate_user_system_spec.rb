@@ -17,7 +17,6 @@ RSpec.describe 'Sign up', type: :feature do
   end
 
   it 'signs in' do
-    # @employee = create(:employee)
     visit '/employees/sign_in'
     within('form') do
       fill_in 'Email', with: created_employee.email
