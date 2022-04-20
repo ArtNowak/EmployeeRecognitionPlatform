@@ -5,7 +5,12 @@
 https://floating-beach-54552.herokuapp.com
 ```
 
-### Credentials
+### Admin Credentials
+```
+admin@test.com / adminadmin
+```
+
+### User Credentials
 ```
 test@test.com / password
 ```
