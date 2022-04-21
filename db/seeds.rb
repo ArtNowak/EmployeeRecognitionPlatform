@@ -9,6 +9,8 @@
     Employee.create(email: "employee#{i}@test.com", password: 'password')
 end
 
-Kudo.create!(title: 'from_console', content: 'from_console', giver: Employee.find_by(email: 'employee3@test.com'), receiver: Employee.find_by(email: 'employee4@test.com'))
+1.upto(4) do |i|
+    Kudo.create!(title: "Title#{i}", content: "Content#{i}", giver: Employee.find_by(email: "employee#{i}@test.com"), receiver: Employee.find_by(email: "employee#{i+1}@test.com"))
+end
 
 AdminUser.create(email: "admin@test.com", password: 'adminadmin')
