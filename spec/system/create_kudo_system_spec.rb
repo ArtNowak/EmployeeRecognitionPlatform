@@ -22,4 +22,18 @@ RSpec.describe 'Create Kudo', type: :feature do
     click_button 'Create Kudo'
     expect(page).to have_content 'Kudo was successfully created'
   end
+
+  it 'Spends all Kudos' do
+    1.upto(11) do
+      visit '/kudos/new'
+      within('form') do
+        fill_in 'Title', with: @kudo.title # rubocop:disable RSpec/InstanceVariable
+        fill_in 'Content', with: @kudo.content # rubocop:disable RSpec/InstanceVariable
+        select @kudo.receiver.email, from: 'Receiver' # rubocop:disable RSpec/InstanceVariable
+      end
+      click_button 'Create Kudo'
+    end
+
+    expect(page).to have_content 'You do not have any Kudos left'
+  end
 end

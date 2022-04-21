@@ -18,14 +18,14 @@
       <nav>
         <% if !admin_user_signed_in? %>
           <h4>User navigation</h4>
-          <ul>
             <% if !employee_signed_in? %>
-              <li><%= link_to 'Sign in', new_employee_session_path %></li>
-              <li><%= link_to 'Sign up', new_employee_registration_path %></li>
+              <ul><li><%= link_to 'Sign in', new_employee_session_path %></li>
+              <li><%= link_to 'Sign up', new_employee_registration_path %></li></ul>
             <% elsif employee_signed_in? %>
-              <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li>
+              <%= flash.now[:notice] = "Kudos left: #{current_employee.number_of_available_kudos}"=%>
+              <ul><li><%= link_to 'User panel', kudos_path %></li>
+              <li><%= link_to 'Sign out', destroy_employee_session_path, method: :delete %></li></ul>
             <%end%>
-          </ul>
         <% end %>
         
         <% if !employee_signed_in? %>
