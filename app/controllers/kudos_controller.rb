@@ -27,7 +27,12 @@ class KudosController < ApplicationController
     @kudo.giver = current_employee
 
     if @kudo.save
-      redirect_to kudos_path, notice: 'Kudo was successfully created.'
+      if current_employee.number_of_available_kudos.positive?
+        current_employee.update(number_of_available_kudos: current_employee.number_of_available_kudos - 1)
+        redirect_to kudos_path, notice: 'Kudo was successfully created.'
+      else
+        redirect_to kudos_path, notice: 'You do not have any Kudos left!'
+      end
     else
       render :new
     end
